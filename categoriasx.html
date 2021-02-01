@@ -1,0 +1,739 @@
+<style>
+  
+
+
+#resultDesc {
+  margin: 0;
+  padding: 0 0;
+  color: #999;
+  font-weight: bold;
+}
+
+#resultDesc span {
+  margin: 0 auto;
+  padding: 5px 10px 7px;
+  color: #d64d52;
+}
+
+#feedNav,
+#feedNav:hover {
+  margin: 0 auto;
+  height: 34px;
+  line-height: 34px;
+  text-align: center;
+  color: #fff;
+  font: bold 12px/30px Arial, Sans-Serif;
+  background-color: #3c3c3c;
+  border-top: 1px solid #444;
+  -webkit-box-shadow: inset -1px 0 0 #222, inset 1px 0 0 #444;
+  -moz-box-shadow: inset -1px 0 0 #222, inset 1px 0 0 #444;
+  box-shadow: inset -1px 0 0 #222, inset 1px 0 0 #444;
+}
+
+#feedNav a,
+#feedNav span {
+  color: #999;
+  padding: 0;
+  text-decoration: none;
+}
+
+#feedNav:hover {
+  color: white;
+  background-color: #444;
+}
+
+#feedNav:active {
+  background-color: #527915;
+}
+
+#feedNav span {
+  cursor: wait;
+}
+
+#table-outer {
+  height: 30px;
+  text-align: center;
+  padding: 0;
+  margin: 15px 20px 0;
+}
+
+#table-outer #orderFeedBy {
+  float: left;
+}
+
+#table-outer #postSearcher {
+  float: right;
+}
+
+#table-outer input {
+  display: inline-block;
+  vertical-align: right;
+  margin: 0 2px 0 0;
+  padding: 0 0;
+}
+
+#table-outer select[disabled] {
+  opacity: 0.4;
+}
+
+#postSearcher input,
+#table-outer select {
+  width: 33%;
+  background-color: #111;
+  border: none;
+  padding: 5px 5px;
+  font: normal normal 10px Tahoma, Verdana, Arial, Sans-Serif;
+  text-transform: uppercase;
+  color: #777;
+  outline: none;
+  -webkit-box-shadow: inset 0 1px 3px black, 0 1px 0 #444;
+  -moz-box-shadow: inset 0 1px 3px black, 0 1px 0 #444;
+  box-shadow: inset 0 1px 3px black, 0 1px 0 #444;
+}
+
+#postSearcher {
+  width: 33%;
+  padding: 0;
+  margin: 0;
+}
+
+#postSearcher input {
+  width: 96%;
+  padding: 5px 5px;
+}
+
+#postSearcher input:focus,
+#table-outer select:focus {
+  background-color: #090909;
+}
+
+#tabbed-toc {
+  width: 100%;
+  margin: 5px auto 0;
+  background-color: #333;
+  border-left: 1px solid #222;
+  border-right: 1px solid #444;
+  border-top: 1px solid #222;
+  border-bottom: 1px solid #444;
+  overflow: hidden;
+  position: relative;
+  color: #888;
+}
+
+#tabbed-toc .loading {
+  margin: 20px 47%;
+}
+
+#tabbed-toc ul,
+#tabbed-toc ol,
+#tabbed-toc li {
+  margin: 0 0;
+  padding: 0 0;
+  list-style: none;
+}
+
+#tabbed-toc #labelSorteres {
+  width: 20%;
+  float: left;
+  margin: 0 auto;
+}
+
+#tabbed-toc #labelSorter ul {
+  position: relative;
+  margin-top: -36px;
+  background-color: #333;
+  
+  height: 100%;
+  overflow: scroll;
+}
+
+#tabbed-toc #labelSorter li a,
+#tabbed-toc #labelSorteres #loadCat li a {
+  display: block;
+  font: bold 10px/28px Helmet, Freesans, Sans-Serif;
+  height: 34px;
+  line-height: 34px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #ccc;
+  border-top: 1px solid #444;
+  border-left: 1px solid #444;
+  border-bottom: 1px solid #222;
+  border-right: 1px solid #222;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0 10px;
+  margin: 0;
+  cursor: pointer;
+}
+
+#tabbed-toc #labelSorteres #loadCat .allowed,
+#tabbed-toc #labelSorter .allowed {
+  cursor: not-allowed;
+}
+
+#tabbed-toc #labelSorter li a:hover {
+  outline: none;
+  background-color: #3c3c3c;
+  color: white;
+}
+
+#tabbed-toc #labelSorter li a.active-tab {
+  color: #c4def0;
+  font-size: 13px;
+  font-weight: bold;
+  outline: none;
+  z-index: 1;
+  padding: 0 10px;
+  margin: 0;
+  background-color: #3c3c3c;
+}
+
+#tabbed-toc #labelSorter li a.active-tab:hover {
+  cursor: not-allowed;
+}
+
+#tabbed-toc #labelSorter .disabled,
+#tabbed-toc #labelSorter .disablet {
+  display: none;
+}
+
+#tabbed-toc .feedline {
+  width: 80%;
+  float: right;
+  text-align: left;
+  margin: 0 auto;
+  padding: 0;
+  background-color: #333;
+  border-bottom: 1px solid #222;height: 100%;
+  overflow: scroll;
+}
+
+#tabbed-toc #feedContainer {
+  background-color: #333;
+}
+
+#tabbed-toc #feedContainer li {
+  float: left;
+  width: 100%;
+  margin: 0 auto;
+  list-style: none;
+  background-color: #333;
+  font: 10px Helmet, Freesans, Sans-Serif;
+  -webkit-box-shadow: inset -1px 0 0 #222, inset 1px 0 0 #444;
+  -moz-box-shadow: inset -1px 0 0 #222, inset 1px 0 0 #444;
+  box-shadow: inset -1px 0 0 #222, inset 1px 0 0 #444;
+}
+
+#tabbed-toc #feedContainer li.bold {
+  width: 50%;
+}
+
+#tabbed-toc #feedContainer li time {
+  display: block;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 10px;
+  color: #666;
+  float: right;
+}
+
+#tabbed-toc #feedContainer li a.item-title {
+  display: block;
+  position: relative;
+  font-weight: normal;
+  font-size: 13px;
+  color: #999;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #222;
+  height: 34px;
+  line-height: 34px;
+  padding: 0 12px;
+  text-transform: uppercase;
+  text-decoration: none;
+  outline: none;
+  overflow: hidden;
+}
+
+#tabbed-toc #feedContainer li a.item-title:hover,
+#tabbed-toc #feedContainer li a.item-title:focus {
+  color: #999;
+  outline: none;
+  border-left: 4px solid #066696;
+  -webkit-box-shadow: inset -1px 0 0 #222, inset 1px 0 0 #444;
+  -moz-box-shadow: inset -1px 0 0 #222, inset 1px 0 0 #444;
+  box-shadow: inset -1px 0 0 #222, inset 1px 0 0 #444;
+}
+
+#tabbed-toc #feedContainer li .summary {
+  display: block;
+  height: 50px;
+  padding: 10px 12px 10px;
+  font-style: italic;
+  color: #ccc;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #222;
+  overflow: hidden;
+}
+
+#tabbed-toc #feedContainer li .summary img.thumbnail {
+  float: left;
+  display: block;
+  margin: 0 8px 0 0;
+  padding: 4px 4px;
+  width: 72px;
+  height: 72px;
+  border: 1px solid #3c3c3c;
+  background-color: #292929;
+}
+
+#tabbed-toc #feedContainer li .itemfoot {
+  clear: both;
+  height: 34px;
+  line-height: 34px;
+  padding: 0 10px;
+  color: #666;
+  border-top: 1px solid #444;
+  border-bottom: 1px solid #222;
+  overflow: hidden;
+  position: relative;
+}
+
+#tabbed-toc #feedContainer li .itemfoot a.itemrmore {
+  float: right;
+  font-weight: bold;
+  color: #3b5998;
+  text-decoration: none;
+}
+
+#tabbed-toc #feedContainer li .itemfoot a.itemrmore:hover {
+  color: #555;
+  background-color: transparent;
+  text-decoration: none;
+  border-color: transparent;
+}
+
+</style>
+
+<script type="text/javascript">
+  var tocConfig = {
+    url: "https://mavistools.blogspot.com/", // Ganti nilainya menjadi URL blog anda
+    feedNum: 18, // Jumlah posting yang tampil
+    numChars: 100, // Jumlah ringkasan posting
+    thumbWidth: 45, // Ukuran thumbnail posting
+    newTabLink: true, // Membuka link pada tab baru
+    showDates: true, // Menampilkan tanggal publis
+    labelName: false, // Menentukan label yang akan di tampilkan
+    showSummaries: true, // Menampilkan ringkasan posting
+    showThumbnails: true, // Menampilkan thumbnail posting
+    navText: "Berikutnya &#9660;", // Memuat artikel lainnya
+    frontText: "Kembali ke Awal &uArr;", // Artikel sudah mencapai batas
+    moreText: "Selengkapnya &#9658;", // Readmore atau baca selengkapnya
+    loading: "<span>Memuat Content...</span>", // Sedang memuat content
+    searching: "<span>Mencari...</span>", // Sedang mencari content
+    noResult: "Tak Ditemukan", // Content tidak di temukan
+    loadCat: "Sedang Memuat Label...", // Memuat label
+    resetCat: "Reset Ulang Category...", // Reset label
+    noImage: "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==", // Artikel tanpa gambar
+    monthNames: ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"] // Bulan terbit artikel
+  };
+</script>
+
+<div id="table-outer">
+  <select id="orderFeedBy">
+    <option value="published" selected>POSTING TERBARU</option>
+    <option value="updated">POSTING DIPERBAHARUI</option>
+  </select><span id="resultDesc"></span>
+  <form id="postSearcher">
+    <input type="text" id="feed-q-box" value="" autocomplete="off" onkeyup="resetField();" />
+  </form>
+</div>
+<div id="tabbed-toc"><span id="labelSorteres">
+    <div id="loadCat"></div>
+    <div id="labelSorter">
+      <li class="toc-tab-item"><a class="allowed" href="javascript:changeSort(0);">SEDANG MEMUAT LABEL...</a></li>
+    </div>
+  </span>
+  <div class="feedline">
+    <ul id="feedContainer"></ul>
+    <div id="feedNav"></div>
+  </div>
+</div>
+
+
+<script>
+  var tocConfig_defaults = {
+  url: "http://www.huntersekai.website",
+  feedNum: 12,
+  numChars: 100,
+  thumbWidth: 40,
+  newTabLink: true,
+  showDates: true,
+  labelName: true,
+  showSummaries: true,
+  showThumbnails: true,
+  navText: "Berikutnya &#9660;",
+  frontText: "Kembali ke Awal &uArr;",
+  moreText: "Selengkapnya &#9658;",
+  loading: "<span>Memuat Content...</span>",
+  searching: "<span>Mencari...</span>",
+  noResult: "Tak Ditemukan",
+  loadCat: "Sedang Memuat Label...",
+  resetCat: "Reset Ulang Category...",
+  noImage:
+    "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==",
+  monthNames: [
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember"
+  ]
+};
+for (var i in tocConfig_defaults) {
+  tocConfig_defaults[i] =
+    typeof tocConfig[i] !== undefined && typeof tocConfig[i] !== "undefined"
+      ? tocConfig[i]
+      : tocConfig_defaults[i];
+}
+
+function getID(a) {
+  return document.getElementById(a);
+}
+var head = document.getElementsByTagName("head")[0],
+  tC = tocConfig_defaults,
+  tocContainer = getID("feedContainer"),
+  feedNav = getID("feedNav"),
+  orderByer = getID("orderFeedBy"),
+  labelSorter = getID("labelSorter"),
+  input = getID("postSearcher").getElementsByTagName("input")[0],
+  resultDesc = getID("resultDesc"),
+  loadCat = getID("loadCat"),
+  nextPage,
+  feedArchive,
+  startPage = 0,
+  filter = 0,
+  target = tC.newTabLink ? ' target="_blank"' : "",
+  conFig =
+    "\x68\x74\x74\x70\x3a\x2f\x2f\x69\x64\x74\x75\x74\x6f\x72\x70\x6c\x75\x73\x2e\x62\x6c\x6f\x67\x73\x70\x6f\x74\x2e\x63\x6f\x6d\x2f\x32\x30\x31\x34\x2f\x30\x37\x2f\x70\x65\x6d\x62\x75\x61\x74\x61\x6e\x2d\x73\x69\x74\x65\x6d\x61\x70\x2d\x69\x6e\x74\x65\x72\x65\x73\x74\x69\x6e\x67\x2d\x6f\x6e\x2d\x62\x6c\x6f\x67\x2e\x68\x74\x6d\x6c";
+
+function clickTab(pos) {
+  var a = labelSorter.getElementsByTagName("ul"),
+    b = a[0],
+    c = b.getElementsByTagName("a");
+  for (var u = 0; u < c.length; u++) {
+    c[u].className = "";
+    c[parseInt(pos, 10)].className = "active-tab";
+  }
+  for (var t = 0; t < a.length; t++) {
+    a[t].className = "disabled";
+    a[parseInt(pos, 10)].className = "disablet";
+  }
+}
+
+function showLabels(json) {
+  var cat = json.feed.category,
+    skeleton = "";
+  skeleton += "<ul id='labelSorter'>";
+  for (var i = 0, cen = cat.length; i < cen; i++) {
+    skeleton += "<li class='toc-tab-item-" + i + "'>";
+    skeleton +=
+      "<a onclick='javascript:clickTab(" +
+      i +
+      ");' href='javascript:changeSort(\"" +
+      decodeURIComponent(cat[i].term) +
+      "\")' ";
+    skeleton +=
+      "title='lihat post pada label \"" +
+      decodeURIComponent(cat[i].term) +
+      "\"'>" +
+      cat[i].term.toUpperCase() +
+      "</a>";
+    skeleton += "</li>";
+  }
+  skeleton += "<li><a href='" + conFig + "' " + target + ">Get Widget</a></li>";
+  skeleton += "</ul>";
+  labelSorter.innerHTML = skeleton;
+  loadCat.innerHTML =
+    "<li class='toc-tab-item-01'><a class='allowed' href='javascript:poid(0)'>" +
+    tC.loadCat +
+    "</a></li>";
+}
+
+function showFeedList(json) {
+  var entries = json.feed.entry,
+    postTitle,
+    postUrl,
+    postImage,
+    postContent,
+    commentNum,
+    pub,
+    date,
+    month,
+    skeleton = "";
+  if (json.feed.entry) {
+    for (var i = 0; i < tC.feedNum; i++) {
+      if (i == json.feed.entry.length) {
+        break;
+      }
+      for (var j = 0, jen = entries[i].link.length; j < jen; j++) {
+        if (entries[i].link[j].rel == "alternate") {
+          postUrl = entries[i].link[j].href;
+          break;
+        }
+      }
+      for (var k = 0, ken = json.feed.link.length; k < ken; k++) {
+        if (json.feed.link[k].rel == "next") {
+          nextPage = json.feed.link[k].href;
+        }
+      }
+      for (var l = 0, len = entries[i].link.length; l < len; l++) {
+        if (
+          entries[i].link[l].rel == "replies" &&
+          entries[i].link[l].type == "text/html"
+        ) {
+          commentNum = entries[i].link[l].title;
+          break;
+        }
+      }
+      postTitle = entries[i].title.$t;
+      pub = entries[i].published.$t;
+      month = tC.monthNames;
+      postContent =
+        "summary" in entries[i] && tC.showSummaries === true
+          ? entries[i].summary.$t
+              .replace(/<br ?\/?>/gi, " ")
+              .replace(/<(.*?)>/g, "")
+        
+        .replace('display', '')
+        .replace('flex', '')
+        .replace('background ', '')
+        .replace('preloader', '')
+        .replace('items', '')
+        .replace('Meibis', '')
+        .replace('Meibis', '')
+        .replace('Meibis', '')
+        .replace(/[^a-zA-Z 0-9.]+/g,' ')
+        
+              .replace(/<iframe/gi, "")
+              .substring(0, tC.numChars)
+          : "";
+      postImage =
+        "media$thumbnail" in entries[i] && tC.showThumbnails === true
+          ? entries[i].media$thumbnail.url.replace(
+              /\/s[0-9]+\-c/,
+              "/s" + tC.thumbWidth + "-c"
+            )
+          : tC.noImage.replace(/\/s[0-9]+\-c/, "/s" + tC.thumbWidth + "-c");
+      date = tC.showDates
+        ? "<time datetime='" +
+          pub +
+          "' title='" +
+          pub +
+          "'>" +
+          pub.substring(8, 10) +
+          " " +
+          month[parseInt(pub.substring(5, 7), 10) - 1] +
+          " " +
+          pub.substring(0, 4) +
+          "</time>"
+        : "";
+      skeleton += "<li title='" + postTitle + "'";
+      skeleton += tC.showSummaries ? " class='bold'" : "";
+      skeleton +=
+        "><a class='item-title' href='" +
+        postUrl +
+        "'" +
+        target +
+        ">" +
+        postTitle +
+        "";
+      skeleton += tC.showSummaries !== true ? "" + date + "" : "";
+      skeleton += "</a>";
+      skeleton += tC.showSummaries
+        ? "<span class='summary'><img class='thumbnail' style='width:" +
+          tC.thumbWidth +
+          "px;height:" +
+          tC.thumbWidth +
+          "px;' src='" +
+          postImage +
+          "' alt='" +
+          postTitle +
+          "' />" +
+          postContent +
+          "<span style='display:block;clear:both;'></span></span>"
+        : "";
+      skeleton += tC.showSummaries
+        ? "<div class='itemfoot'>" +
+          commentNum +
+          "<a class='itemrmore' href='" +
+          postUrl +
+          "'" +
+          target +
+          ">" +
+          tC.moreText +
+          "</a></div>"
+        : "";
+      skeleton += "</li>";
+    }
+    skeleton += "<div style='clear:both;'></div>";
+    resultDesc.innerHTML =
+      input.value !== "" && filter == "search"
+        ? "<span>Kata kunci <strong>&#8220;" +
+          input.value +
+          "&#8221;</strong> (" +
+          json.feed.openSearch$totalResults.$t +
+          " Temuan)</span>"
+        : "Total: " + json.feed.openSearch$totalResults.$t + " Artikel";
+    feedContainer.innerHTML += nextPage ? skeleton : "";
+    if (nextPage && filter != "search") {
+      skeleton =
+        filter !== 0
+          ? "<a href='javascript:initResult(2);' class='next'>" +
+            tC.navText +
+            "</a>"
+          : "<a href='javascript:initResult(1);' class='next'>" +
+            tC.navText +
+            "</a>";
+    } else {
+      skeleton =
+        "<a href='javascript:changeSort(0);' class='front'>" +
+        tC.frontText +
+        "</a>";
+      clickTab(0);
+    }
+    feedNav.innerHTML = skeleton;
+    loadCat.innerHTML =
+      "<li class='toc-tab-item-01'><a class='allowed' href='javascript:poid(0)'>" +
+      tC.loadCat +
+      "</a></li>";
+    input.value = "";
+    labelSorter.getElementsByTagName("ul")[0].removeAttribute("class");
+    orderByer.removeAttribute("disabled");
+  } else {
+    if (filter == "search") {
+      feedContainer.innerHTML = "";
+      resultDesc.innerHTML = "";
+      alert(tC.noResult);
+    }
+    feedNav.innerHTML =
+      "<a href='javascript:changeSort(0);' class='front'>" +
+      tC.frontText +
+      "</a>";
+    loadCat.innerHTML =
+      "<li class='toc-tab-item-01'><a class='allowed' href='javascript:poid(0)'>" +
+      tC.resetCat +
+      "</a></li>";
+    clickTab(0);
+  }
+}
+
+function initResult(archive) {
+  var p, param;
+  if (archive == 1) {
+    p = nextPage.indexOf("?");
+    param = nextPage.substring(p);
+  } else if (archive == 2) {
+    p = nextPage.indexOf("?");
+    param = nextPage.substring(p).replace(/\?/, "/-/" + filter + "?");
+  } else {
+    param =
+      "?start-index=1&max-results=" +
+      tC.feedNum +
+      "&orderby=" +
+      orderByer.value +
+      "&alt=json-in-script";
+  }
+  param += "&callback=showFeedList";
+  updateScript(param);
+}
+
+function removeScript() {
+  var old = getID("temporer-script");
+  old.parentNode.removeChild(old);
+}
+
+function buildLabels() {
+  var s = document.createElement("script");
+  s.type = "text/javascript";
+  s.src =
+    tC.url +
+    "/feeds/posts/summary?max-results=0&alt=json-in-script&callback=showLabels";
+  head.appendChild(s);
+}
+
+function updateScript(tail) {
+  if (startPage == 1) {
+    removeScript();
+    startPage = 1;
+  }
+  feedNav.innerHTML = tC.loading;
+  feedArchive =
+    tC.labelName !== false
+      ? tC.url + "/feeds/posts/summary/-/" + tC.labelName + tail
+      : (feedArchive = tC.url + "/feeds/posts/summary" + tail);
+  var toc_script = document.createElement("script");
+  toc_script.type = "text/javascript";
+  toc_script.src = feedArchive;
+  toc_script.id = "temporer-script";
+  head.appendChild(toc_script);
+}
+
+function changeSort(label) {
+  removeScript();
+  tocContainer.innerHTML = "";
+  resultDesc.innerHTML = "Menghitung artikel&hellip;";
+  feedNav.innerHTML = tC.loading;
+  var newScript = document.createElement("script"),
+    labSorter = labelSorter.getElementsByTagName("ul")[0],
+    l = label !== 0 ? "/-/" + label : "";
+  newScript.type = "text/javascript";
+  newScript.id = "temporer-script";
+  newScript.src =
+    tC.url +
+    "/feeds/posts/summary" +
+    l +
+    "?alt=json-in-script&max-results=" +
+    tC.feedNum +
+    "&orderby=" +
+    orderByer.value +
+    "&callback=showFeedList";
+  head.appendChild(newScript);
+  labSorter.disabled = true;
+  orderByer.disabled = true;
+  filter = label;
+}
+
+function searchPost() {
+  removeScript();
+  tocContainer.innerHTML = "";
+  resultDesc.innerHTML = "";
+  feedNav.innerHTML = tC.searching;
+  var newScript = document.createElement("script");
+  newScript.type = "text/javascript";
+  newScript.id = "temporer-script";
+  newScript.src =
+    tC.url +
+    "/feeds/posts/summary?alt=json-in-script&orderby=published&q=" +
+    input.value +
+    "&max-results=9999&callback=showFeedList";
+  head.appendChild(newScript);
+  filter = "search";
+  return false;
+}
+getID("postSearcher").onsubmit = searchPost;
+orderByer.onchange = function () {
+  changeSort(0);
+  clickTab(0);
+};
+initResult(0);
+buildLabels();
+
+</script>
