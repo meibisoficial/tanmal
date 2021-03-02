@@ -1,3 +1,12 @@
+<head>
+  <style>
+    body { background-color: #3c3c3c; }
+  </style>
+</head>
+<body>
+</body>
+
+
 <style>
   #resultDesc {
   margin: 0;
@@ -317,7 +326,8 @@
     url: "https://mavistools.blogspot.com/", // Ganti nilainya menjadi URL blog anda
     feedNum: 18, // Jumlah posting yang tampil
     numChars: 100, // Jumlah ringkasan posting
-    thumbWidth: 45, // Ukuran thumbnail posting
+    thumbWidth: 100, // Ukuran thumbnail posting
+    pedito: 150,
     newTabLink: true, // Membuka link pada tab baru
     showDates: true, // Menampilkan tanggal publis
     labelName: false, // Menentukan label yang akan di tampilkan
@@ -362,7 +372,8 @@
   url: "http://www.huntersekai.website",
   feedNum: 12,
   numChars: 100,
-  thumbWidth: 40,
+  thumbWidth: 140,
+  pedito: 100,
   newTabLink: true,
   showDates: true,
   labelName: true,
@@ -525,7 +536,7 @@ function showFeedList(json) {
         "media$thumbnail" in entries[i] && tC.showThumbnails === true
           ? entries[i].media$thumbnail.url.replace(
               /\/s[0-9]+\-c/,
-              "/s" + tC.thumbWidth + "-c"
+              "/s" + tC.thumbWidth + "-c" +tC.pedito
             )
           : tC.noImage.replace(/\/s[0-9]+\-c/, "/s" + tC.thumbWidth + "-c");
       date = tC.showDates
@@ -572,7 +583,7 @@ function showFeedList(json) {
           "<a class='itemrmore' href='" +
           postUrl +
           "'" +
-          target +
+          
           ">" +
           tC.moreText +
           "</a></div>"
